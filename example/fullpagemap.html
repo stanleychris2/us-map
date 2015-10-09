@@ -44,6 +44,22 @@
 		overflow: hidden;
 	}
 
+		/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		background-image: url(imgs/whitney.jpg);
+	}
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section0,
+	#section1,
+	#section2,
+	#section3{
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
 	#myVideo{
 		position: absolute;
 		right: 0;
@@ -63,15 +79,7 @@
 
 
 
-	/* Layer with position absolute in order to have it over the video
-	* --------------------------------------- */
-	#section0 .layer{
-		position: absolute;
-		z-index: 4;
-		width: 100%;
-		left: 0;
-		top: 43%;
-	}
+
 
 	/*solves problem with overflowing video in Mac with Chrome */
 	#section0{
@@ -97,37 +105,28 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 
-			$('#map').usmap({
-	    'stateSpecificStyles': {
-	      'AK' : {fill: '#f00'}
-	    },
-	    'stateSpecificHoverStyles': {
-	      'HI' : {fill: '#ff0'}
-	    },
-	    
-	    'mouseoverState': {
-	      'HI' : function(event, data) {
-	        //return false;
-	      }
-	    },
-	    
-	    'click' : function(event, data) {
-	      $('#alert')
-	        .text('Click '+data.name+' on map 1')
-	        .stop()
-	        .css('backgroundColor', '#ff0')
-	        .animate({backgroundColor: '#fff'}, 1000);
-	    }
-	  });
+		$('#map').usmap({
+	    	'mouseoverState': {
+	      	'HI' : function(event, data) {
+	      	}
+	    	},
+	    	'click' : function(event, data) {
+	    		$('#alert')
+	        	.text('Click '+data.name+' on map 1')
+	        	.stop()
+	        	.css('backgroundColor', '#ff0');
+
+
+	        }
+
+	  	});
 			
-			$('#fullpage').fullpage({
+		$('#fullpage').fullpage({
 				verticalCentered: true,
 				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
 				afterRender: function(){
-
-
 					//playing the video
-					
+					$('video').get(0).play();
 				}
 			});
 
@@ -140,14 +139,23 @@
 
 
 <div id="fullpage">
-	<div class="section " id="section0">
-				<div id="map" style="width:1100px; height:700px; padding-left: 80px;"></div>
+	
+	<div class="section " id="section0">	
+			<video autoplay loop muted id="myVideo">
+			<source src="imgs/indiana.mp4" type="video/mp4">
+
+		</video>	
 	</div>
 	<div class="section" id="section1">
-	    <div class="slide" id="slide1"><h1>Slide Backgrounds</h1></div>
-	    <div class="slide" id="slide2"><h1>Totally customizable</h1></div>
+		<h2>This summer I traveled around the country raising money for Parkinson's Research. 
+			<br />I managed to capture a timelapse in just about every state. 
+			<br />Scroll and watch time fly by.... literally.</h2>
+
 	</div>
-	<div class="section" id="section2"><h1>Lovely images <br />for a lovely page</h1></div>
+	<div class="section" id="section2">
+		<h1> Or use this map to jump sections </h1>
+		<div id="map" style="width:1000px; height:600px; padding-left: 220px; padding-top: 100px"></div>
+	</div>
 	<div class="section" id="section3"><h1>One Image = One thousand words</h1></div>
 </div>
 
